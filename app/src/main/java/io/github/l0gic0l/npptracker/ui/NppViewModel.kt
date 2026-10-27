@@ -10,6 +10,10 @@ import io.github.l0gic0l.npptracker.data.PowerReport
 import io.github.l0gic0l.npptracker.data.PowerStatus
 import io.github.l0gic0l.npptracker.data.Reactor
 import io.github.l0gic0l.npptracker.data.ReactorUnit
+import io.github.l0gic0l.npptracker.data.RestartData
+import io.github.l0gic0l.npptracker.data.RestartProject
+import io.github.l0gic0l.npptracker.data.RestartRepository
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,8 +40,13 @@ data class NppUiState(
     val query: String = "",
     val filter: UnitFilter = UnitFilter.ALL,
     val sort: UnitSort = UnitSort.NAME,
+    val restarts: RestartData? = null,
 ) {
     fun unit(name: String?): ReactorUnit? = units.firstOrNull { it.name == name }
+
+    /** The restart project for a unit in the NRC report, if it is being restarted. */
+    fun restartFor(unitName: String): RestartProject? =
+        restarts?.projects?.firstOrNull { it.nrcUnit == unitName }
 
     fun count(filter: UnitFilter): Int = units.count { it.matches(filter, starred) }
 
@@ -75,8 +84,10 @@ private fun ReactorUnit.matches(query: String): Boolean {
 
 class NppViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = NrcRepository(application)
+    private val restartRepository = RestartRepository(application)
     private val prefs = application.getSharedPreferences("npp_tracker", Context.MODE_PRIVATE)
     private var reactors: Map<String, Reactor> = emptyMap()
+    private var restartJob: Job? = null
 
     private val _state = MutableStateFlow(
         NppUiState(starred = prefs.getStringSet(KEY_STARRED, emptySet()).orEmpty().toSet())
@@ -85,15 +96,23 @@ class NppViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
+            val restarts = runCatching { restartRepository.load() }.getOrNull()
+            _state.update { it.copy(restarts = restarts) }
+            refreshRestarts()
             reactors = repository.loadReactors()
             val cached = runCatching { repository.loadCachedReport() }.getOrNull()
             if (cached != null) show(cached)
             val stale = cached == null || Duration.between(cached.fetchedAt, Instant.now()) > MAX_CACHE_AGE
-            if (stale) refresh()
+            if (stale) refreshReport()
         }
     }
 
     fun refresh() {
+        refreshRestarts()
+        refreshReport()
+    }
+
+    private fun refreshReport() {
         if (_state.value.isRefreshing) return
         viewModelScope.launch {
             _state.update { it.copy(isRefreshing = true) }
@@ -105,6 +124,18 @@ class NppViewModel(application: Application) : AndroidViewModel(application) {
                 }
             } finally {
                 _state.update { it.copy(isRefreshing = false) }
+            }
+        }
+    }
+
+    /** Fetches the latest restart file; failures are ignored and the current data is kept. */
+    private fun refreshRestarts() {
+        if (restartJob?.isActive == true) return
+        restartJob = viewModelScope.launch {
+            val latest = restartRepository.download() ?: return@launch
+            _state.update { state ->
+                val current = state.restarts
+                if (current == null || !latest.updated.isBefore(current.updated)) state.copy(restarts = latest) else state
             }
         }
     }

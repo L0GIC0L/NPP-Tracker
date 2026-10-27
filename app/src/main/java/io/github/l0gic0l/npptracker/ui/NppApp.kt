@@ -8,7 +8,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.filled.Dashboard
+import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.outlined.Dashboard
+import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SnackbarHost
@@ -38,6 +40,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.l0gic0l.npptracker.R
 import io.github.l0gic0l.npptracker.data.NrcRepository
 import io.github.l0gic0l.npptracker.ui.overview.OverviewScreen
+import io.github.l0gic0l.npptracker.ui.restarts.RestartsScreen
 import io.github.l0gic0l.npptracker.ui.units.UnitsScreen
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -46,6 +49,7 @@ import java.time.format.FormatStyle
 enum class AppDestination(@StringRes val label: Int, val icon: ImageVector, val selectedIcon: ImageVector) {
     UNITS(R.string.nav_units, Icons.AutoMirrored.Outlined.List, Icons.AutoMirrored.Filled.List),
     OVERVIEW(R.string.nav_overview, Icons.Outlined.Dashboard, Icons.Filled.Dashboard),
+    RESTARTS(R.string.nav_restarts, Icons.Outlined.RestartAlt, Icons.Filled.RestartAlt),
 }
 
 /**
@@ -102,6 +106,7 @@ fun NppApp(viewModel: NppViewModel = viewModel()) {
                     onFilterChange = viewModel::setFilter,
                     onSortChange = viewModel::setSort,
                     onToggleStar = viewModel::toggleStar,
+                    onOpenRestarts = { destination = AppDestination.RESTARTS },
                 )
                 AppDestination.OVERVIEW -> OverviewScreen(
                     state = state,
@@ -111,6 +116,15 @@ fun NppApp(viewModel: NppViewModel = viewModel()) {
                     },
                     onRefresh = viewModel::refresh,
                     onAbout = { showAbout = true },
+                    onOpenRestarts = { destination = AppDestination.RESTARTS },
+                )
+                AppDestination.RESTARTS -> RestartsScreen(
+                    state = state,
+                    onUnitClick = { name ->
+                        pendingUnit = name
+                        destination = AppDestination.UNITS
+                    },
+                    onRefresh = viewModel::refresh,
                 )
             }
         }

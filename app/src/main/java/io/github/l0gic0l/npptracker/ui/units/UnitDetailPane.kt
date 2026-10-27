@@ -29,6 +29,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -60,6 +61,7 @@ import io.github.l0gic0l.npptracker.R
 import io.github.l0gic0l.npptracker.data.PowerStatus
 import io.github.l0gic0l.npptracker.data.Reactor
 import io.github.l0gic0l.npptracker.data.ReactorUnit
+import io.github.l0gic0l.npptracker.data.RestartProject
 import io.github.l0gic0l.npptracker.data.averagePower
 import io.github.l0gic0l.npptracker.data.outages
 import io.github.l0gic0l.npptracker.ui.components.ChartPoint
@@ -69,6 +71,7 @@ import io.github.l0gic0l.npptracker.ui.components.PowerChart
 import io.github.l0gic0l.npptracker.ui.components.PowerRing
 import io.github.l0gic0l.npptracker.ui.components.RangeSelector
 import io.github.l0gic0l.npptracker.ui.components.SectionCard
+import io.github.l0gic0l.npptracker.ui.components.StageProgress
 import io.github.l0gic0l.npptracker.ui.components.StatTile
 import io.github.l0gic0l.npptracker.ui.components.formatMedium
 import io.github.l0gic0l.npptracker.ui.components.formatNumber
@@ -85,9 +88,11 @@ fun UnitDetailPane(
     reportDate: LocalDate?,
     starred: Boolean,
     showBack: Boolean,
+    restart: RestartProject?,
     onBack: () -> Unit,
     onToggleStar: () -> Unit,
     onUnitClick: (String) -> Unit,
+    onOpenRestarts: () -> Unit,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val uriHandler = LocalUriHandler.current
@@ -131,6 +136,7 @@ fun UnitDetailPane(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 StatusCard(unit)
+                if (restart != null) RestartProjectCard(restart, onOpenRestarts)
                 HistoryCard(unit, reportDate)
                 OutagesCard(unit)
                 DetailsCard(unit.reactor)
@@ -213,6 +219,15 @@ private fun StatusCard(unit: ReactorUnit) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun RestartProjectCard(project: RestartProject, onOpenRestarts: () -> Unit) {
+    SectionCard(title = stringResource(R.string.restart_project)) {
+        StageProgress(project.stage)
+        LabeledValue(stringResource(R.string.restart_target), project.target)
+        FilledTonalButton(onClick = onOpenRestarts) { Text(stringResource(R.string.restart_details_button)) }
     }
 }
 

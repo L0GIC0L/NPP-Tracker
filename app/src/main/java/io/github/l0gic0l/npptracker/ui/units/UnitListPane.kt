@@ -62,6 +62,7 @@ import io.github.l0gic0l.npptracker.ui.components.unitSupportingText
 import io.github.l0gic0l.npptracker.ui.screens.AppTopBar
 import io.github.l0gic0l.npptracker.ui.screens.LoadingOrError
 import io.github.l0gic0l.npptracker.ui.screens.RefreshableContent
+import io.github.l0gic0l.npptracker.ui.screens.reportSubtitle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -80,7 +81,7 @@ fun UnitListPane(
         topBar = {
             AppTopBar(
                 title = stringResource(R.string.app_name),
-                reportDate = state.reportDate,
+                subtitle = reportSubtitle(state.reportDate),
                 scrollBehavior = scrollBehavior,
                 actions = {
                     SortMenu(state.sort, onSortChange)
@@ -105,6 +106,7 @@ fun UnitListPane(
                     items(visible, key = { it.name }) { unit ->
                         UnitRow(
                             unit = unit,
+                            restarting = state.restartFor(unit.name) != null,
                             starred = unit.name in state.starred,
                             selected = unit.name == selectedName,
                             onClick = { onUnitClick(unit.name) },
@@ -236,6 +238,7 @@ private fun SortMenu(sort: UnitSort, onSortChange: (UnitSort) -> Unit) {
 @Composable
 fun UnitRow(
     unit: ReactorUnit,
+    restarting: Boolean,
     starred: Boolean,
     selected: Boolean,
     onClick: () -> Unit,
@@ -244,7 +247,7 @@ fun UnitRow(
     ListItem(
         headlineContent = { Text(unit.name, maxLines = 1, overflow = TextOverflow.Ellipsis) },
         supportingContent = {
-            Text(unitSupportingText(unit.status, unit.reactor), maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(unitSupportingText(unit.status, unit.reactor, restarting), maxLines = 1, overflow = TextOverflow.Ellipsis)
         },
         leadingContent = { PowerRing(unit.power, unit.status) },
         trailingContent = {

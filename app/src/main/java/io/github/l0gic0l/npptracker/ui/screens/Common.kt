@@ -29,12 +29,17 @@ import io.github.l0gic0l.npptracker.ui.NppUiState
 import io.github.l0gic0l.npptracker.ui.components.formatMedium
 import java.time.LocalDate
 
-/** A top app bar showing a title with the NRC report date underneath. */
+/** "NRC report · Oct 26, 2026", the subtitle used under screen titles. */
+@Composable
+fun reportSubtitle(reportDate: LocalDate?): String? =
+    reportDate?.let { stringResource(R.string.report_date, it.formatMedium()) }
+
+/** A top app bar showing a title with a smaller subtitle (usually the report date) underneath. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
     title: String,
-    reportDate: LocalDate?,
+    subtitle: String?,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
@@ -43,9 +48,9 @@ fun AppTopBar(
         title = {
             Column {
                 Text(title, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                if (reportDate != null) {
+                if (subtitle != null) {
                     Text(
-                        text = stringResource(R.string.report_date, reportDate.formatMedium()),
+                        text = subtitle,
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

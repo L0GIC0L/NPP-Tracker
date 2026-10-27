@@ -1,0 +1,110 @@
+{
+ "updated": "2026-10-27",
+ "projects": [
+  {
+   "id": "palisades",
+   "name": "Palisades Nuclear Plant",
+   "nrcUnit": "Palisades",
+   "owner": "Holtec International (Palisades Energy LLC)",
+   "location": "Covert Township, MI",
+   "state": "MI",
+   "type": "PWR",
+   "design": "Combustion Engineering two-loop PWR",
+   "capacityMwe": 800,
+   "shutdown": "2022-05-20",
+   "stage": "fuel_load",
+   "target": "Not set",
+   "buyer": "Wolverine Power Cooperative and Hoosier Energy",
+   "financing": "DOE loan of up to $1.52 billion",
+   "summary": "Fuel loading began on Aug 30, 2026 and was halted when a fuel assembly tilted in the reactor. The NRC approved a one-time plan to recover it, and Holtec removed it on Oct 21, so fuel loading can resume. Holtec has not set a restart date. The NRC also found a chilled work environment in two Holtec departments, with no violations.",
+   "milestones": [
+    {"date": "2022-05-20", "text": "Shut down by Entergy", "done": true},
+    {"date": "2022-06", "text": "Sold to Holtec for decommissioning", "done": true},
+    {"date": "2023-09-12", "text": "Power purchase agreement with Wolverine Power Cooperative", "done": true},
+    {"date": "2024-09", "text": "DOE closed a loan of up to $1.52 billion", "done": true},
+    {"date": "2025-07-24", "text": "NRC approved the return to an operating licensing basis", "done": true},
+    {"date": "2025-08", "text": "Returned to operational status", "done": true},
+    {"date": "2025-10", "text": "New fuel delivered to the site", "done": true},
+    {"date": "2026-08-30", "text": "Fuel loading into the reactor began", "done": true},
+    {"date": "2026-09-11", "text": "Reconnected to its 345 kV switchyard", "done": true},
+    {"date": "2026-10", "text": "NRC approved a one-time plan to recover a tilted fuel assembly", "done": true},
+    {"date": "2026-10-21", "text": "Tilted fuel assembly recovered", "done": true},
+    {"date": "", "text": "Finish fuel loading, testing and startup", "done": false},
+    {"date": "2027-03", "text": "Contracted power sales begin", "done": false}
+   ],
+   "nrcUrl": "https://www.nrc.gov/facilities-safety/facility-finder/reactors/pali",
+   "sources": [
+    {"title": "Michigan Public, Oct 22, 2026", "url": "https://www.michiganpublic.org/environment-climate-change/2026-10-22/palisades-nuclear-plant-fuel-assembly"},
+    {"title": "World Nuclear News: tilted assembly retrieved", "url": "https://www.world-nuclear-news.org/articles/tilted-fuel-assembly-retrieved-from-palisades-plant"},
+    {"title": "World Nuclear News: NRC approvals, Jul 2025", "url": "https://world-nuclear-news.org/articles/regulatory-approvals-pave-way-for-palisades-restart"},
+    {"title": "Nuclear News Network restart tracker", "url": "https://www.nuclearnewsnetwork.com/industry-trackers/nuclear-plant-restarts/palisades"}
+   ]
+  },
+  {
+   "id": "crane",
+   "name": "Crane Clean Energy Center",
+   "formerName": "Three Mile Island Unit 1",
+   "owner": "Constellation Energy",
+   "location": "Londonderry Township, PA",
+   "state": "PA",
+   "type": "PWR",
+   "design": "Babcock & Wilcox PWR",
+   "capacityMwe": 835,
+   "shutdown": "2019-09",
+   "stage": "nrc_review",
+   "target": "2027",
+   "buyer": "Microsoft (20-year agreement)",
+   "financing": "$1 billion DOE loan",
+   "summary": "Refurbishment is under way, and Constellation says the project is ahead of schedule for a 2027 restart. The NRC finished its environmental review on Sep 18, 2026, finding no significant impact, and has approved receipt of new fuel. It is still reviewing one exemption and three license amendments needed for power operation through Apr 19, 2034. PJM has warned that full grid upgrades may not be finished until after 2030.",
+   "milestones": [
+    {"date": "2019-09", "text": "Permanently shut down as Three Mile Island Unit 1", "done": true},
+    {"date": "2024-09-20", "text": "Restart announced with a 20-year Microsoft power agreement; renamed Crane Clean Energy Center", "done": true},
+    {"date": "2025-11", "text": "DOE closed a $1 billion loan", "done": true},
+    {"date": "2026-06-01", "text": "FERC approved moving 760 MW of grid interconnection rights from Eddystone", "done": true},
+    {"date": "2026-06-03", "text": "NRC issued a draft environmental assessment", "done": true},
+    {"date": "2026-07-01", "text": "NRC approved receipt of new fuel (Amendment 307)", "done": true},
+    {"date": "2026-09-18", "text": "NRC final environmental assessment: no significant impact", "done": true},
+    {"date": "", "text": "NRC decision on the exemption and three license amendments", "done": false},
+    {"date": "2027", "text": "Return to service (Constellation target)", "done": false}
+   ],
+   "nrcUrl": "https://www.nrc.gov/facilities-safety/facility-finder/reactors/ccec",
+   "sources": [
+    {"title": "World Nuclear News, Sep 28, 2026", "url": "https://www.world-nuclear-news.org/articles/nrc-completes-environmental-review-of-crane-restart"},
+    {"title": "NRC news release: environmental finding", "url": "https://www.nrc.gov/about-nrc/news-releases/2026/nrc-finds-no-significant-environmental-impact-proposed-crane-clean-energy-center-restart"},
+    {"title": "Nuclear News Network restart tracker", "url": "https://www.nuclearnewsnetwork.com/industry-trackers/nuclear-plant-restarts/crane-clean-energy-center"}
+   ]
+  },
+  {
+   "id": "duane-arnold",
+   "name": "Duane Arnold Energy Center",
+   "owner": "NextEra Energy",
+   "location": "Palo, IA",
+   "state": "IA",
+   "type": "BWR",
+   "design": "GE BWR-4, Mark I containment",
+   "capacityMwe": 615,
+   "shutdown": "2020-08-10",
+   "stage": "nrc_review",
+   "target": "Early 2029",
+   "buyer": "Google (25-year agreement)",
+   "financing": "$1.9 billion DOE loan",
+   "summary": "NextEra is preparing to build new cooling towers (the originals were removed after the 2020 derecho) and to restore other site systems. The NRC issued a draft environmental assessment on Aug 4, 2026, finding no significant impact, and a restart panel is inspecting the work. NRC staff have said licensing decisions could come in January 2028. NextEra plans to restart no later than early 2029.",
+   "milestones": [
+    {"date": "2020-08-10", "text": "Shut down after a derecho damaged its cooling towers", "done": true},
+    {"date": "2025-01", "text": "NextEra asked the NRC to restore power operations", "done": true},
+    {"date": "2025-10-27", "text": "25-year power agreement with Google; NextEra takes full ownership", "done": true},
+    {"date": "2026-08-04", "text": "NRC issued a draft environmental assessment", "done": true},
+    {"date": "2026-09-08", "text": "DOE closed a $1.9 billion loan", "done": true},
+    {"date": "", "text": "NRC final environmental assessment", "done": false},
+    {"date": "2028-01", "text": "NRC licensing decisions (NRC staff estimate)", "done": false},
+    {"date": "Early 2029", "text": "Return to service (NextEra target)", "done": false}
+   ],
+   "nrcUrl": "https://www.nrc.gov/facilities-safety/facility-finder/reactors/duan",
+   "sources": [
+    {"title": "Utility Dive: DOE loan", "url": "https://www.utilitydive.com/news/nextera-doe-loan-duane-arnold-nuclear-restart/829773/"},
+    {"title": "ANS Nuclear Newswire: draft EA", "url": "https://www.ans.org/news/article-8269/nrc-issues-draft-eafonsi-for-duane-arnold-restart/"},
+    {"title": "Iowa Public Radio, Apr 29, 2026", "url": "https://www.iowapublicradio.org/ipr-news/2026-04-29/what-restarting-the-duane-arnold-power-plant-tells-us-about-nuclear-energy-under-the-trump-administration"}
+   ]
+  }
+ ]
+}

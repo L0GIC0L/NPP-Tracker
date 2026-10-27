@@ -38,6 +38,7 @@ fun UnitsScreen(
     onFilterChange: (UnitFilter) -> Unit,
     onSortChange: (UnitSort) -> Unit,
     onToggleStar: (String) -> Unit,
+    onOpenRestarts: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val showUnit: (String) -> Unit = { name ->
@@ -82,9 +83,11 @@ fun UnitsScreen(
                             reportDate = state.reportDate,
                             starred = unit.name in state.starred,
                             showBack = navigator.scaffoldValue[ListDetailPaneScaffoldRole.List] == PaneAdaptedValue.Hidden,
+                            restart = state.restartFor(unit.name),
                             onBack = { scope.launch { navigator.navigateBack() } },
                             onToggleStar = { onToggleStar(unit.name) },
                             onUnitClick = showUnit,
+                            onOpenRestarts = onOpenRestarts,
                         )
                     }
                 }

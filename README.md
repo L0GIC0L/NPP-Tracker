@@ -6,6 +6,7 @@ An Android app that tracks the daily status of every commercial nuclear power re
   <img src="docs/screenshots/phone-units.png" width="240" alt="Unit list on a phone">
   <img src="docs/screenshots/phone-detail.png" width="240" alt="Unit details on a phone">
   <img src="docs/screenshots/phone-overview.png" width="240" alt="Fleet overview on a phone">
+  <img src="docs/screenshots/phone-restarts.png" width="240" alt="Plant restarts on a phone">
 </p>
 <p>
   <img src="docs/screenshots/tablet-list-detail.png" width="720" alt="List and details side by side on a tablet">
@@ -25,6 +26,11 @@ An Android app that tracks the daily status of every commercial nuclear power re
   - the fleet output trend over the year
   - which units are offline or at reduced power, and what changed since the previous report
   - breakdowns by NRC region and reactor type
+- **Plant restarts**: the shut-down reactors being returned to service (currently Palisades, Crane / Three Mile Island Unit 1 and Duane Arnold). For each one:
+  - its stage, from announcement through NRC review, fuel loading and startup
+  - a dated timeline of milestones, plus the target date, capacity, design, power buyer and federal financing
+  - links to the sources and the NRC page
+  - for a restart that already appears in the NRC daily report (Palisades), its live status and a link to its unit page; that unit is marked "Restarting" in the lists
 - **Material 3 throughout**: dynamic color (Material You) on Android 12 and later, light and dark themes, edge-to-edge layout.
 - **Works offline**: the last report is cached on the device, and pulling down refreshes it.
 
@@ -69,6 +75,7 @@ You need JDK 17 or later and the Android SDK (Android Studio installs both).
   ```
 
   A unit that appears in the daily report but is missing from the bundled file still shows up, just without its details.
+- **Restart projects**: curated by hand from NRC documents and news reports in `app/src/main/assets/restarts.json`. The app also downloads that file from this repository's `main` branch when it refreshes, so you can update the restart list by editing the file on GitHub, with no new build. If the downloaded copy's `updated` date is older than the copy built into the app, the built-in one is used, so bump that date with each edit. The unit tests check the file, so a malformed edit fails the build. Each project has a `stage` (`announced`, `nrc_review`, `approved`, `fuel_load`, `startup` or `operating`) and a list of milestones. A milestone date can be `yyyy-MM-dd`, `yyyy-MM`, a year, a phrase such as `Early 2029`, or empty.
 
 Power is reported as a percentage of licensed thermal power as of the morning of the report date. Thermal output figures are estimates (licensed MWt × reported power). This project is not affiliated with or endorsed by the NRC.
 
@@ -76,12 +83,13 @@ Power is reported as a percentage of licensed thermal power as of the morning of
 
 ```
 app/src/main/java/io/github/l0gic0l/npptracker/
-├── data/          NRC download and cache, report parser, unit and fleet statistics
+├── data/          NRC download and cache, report parser, unit and fleet statistics, restart projects
 ├── ui/
 │   ├── NppApp.kt        app shell: adaptive navigation suite, about dialog
 │   ├── NppViewModel.kt  state, filtering, sorting, starred units
 │   ├── units/           list/detail pane scaffold, list pane, detail pane
 │   ├── overview/        fleet dashboard
+│   ├── restarts/        plant restart projects
 │   ├── components/      power ring, chart, cards, formatting
 │   └── theme/           Material 3 theme (dynamic color with a fallback scheme)
 tools/generate_reactors.py   regenerates the bundled unit details

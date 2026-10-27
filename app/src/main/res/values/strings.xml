@@ -136,4 +136,45 @@
     <string name="about_body">Shows the daily power level of every commercial nuclear power reactor licensed by the U.S. Nuclear Regulatory Commission.\n\nPower levels come from the NRC Power Reactor Status Report. Each value is the unit\'s power as a percentage of its licensed thermal power, as of the morning of the report date. Unit details come from the NRC list of operating reactors.\n\nThermal output figures are estimates (licensed MWt × reported power).\n\nThis app is not affiliated with or endorsed by the NRC.</string>
     <string name="about_downloaded">Data downloaded %1$s</string>
     <string name="open_nrc_report">NRC report</string>
+    <!-- Restarts -->
+    <string name="nav_restarts">Restarts</string>
+    <string name="restarts_title">Plant restarts</string>
+    <string name="restarts_reviewed">Reviewed %1$s</string>
+    <plurals name="restarts_count">
+        <item quantity="one">%1$d shut-down reactor is being returned to service</item>
+        <item quantity="other">%1$d shut-down reactors are being returned to service</item>
+    </plurals>
+    <string name="restarts_capacity">≈ %1$s MWe of capacity · %2$s</string>
+    <string name="restarts_none_generating">none generating yet</string>
+    <string name="restarts_generating">%1$d generating</string>
+    <string name="restarts_explainer">A restart brings a permanently shut-down reactor back into service. The owner must restore the operating license basis with NRC approval, refurbish the plant, load fuel and pass startup testing before it can generate power again.</string>
+    <string name="restarts_disclaimer">Compiled from NRC documents and news reports, so it can lag events. Pull down to fetch the latest list.</string>
+    <string name="stage_announced">Restart announced</string>
+    <string name="stage_nrc_review">NRC review and refurbishment</string>
+    <string name="stage_approved">NRC approval</string>
+    <string name="stage_fuel_load">Fuel loading</string>
+    <string name="stage_startup">Startup and testing</string>
+    <string name="stage_operating">Generating power</string>
+    <string name="stage_of">Stage %1$d of %2$d · %3$s</string>
+    <string name="stage_next">Next: %1$s</string>
+    <string name="formerly">Formerly %1$s</string>
+    <string name="restart_owner_location">%1$s · %2$s</string>
+    <string name="restart_target">Target restart</string>
+    <string name="restart_capacity">Capacity</string>
+    <string name="restart_design">Design</string>
+    <string name="restart_shutdown">Shut down</string>
+    <string name="restart_buyer">Power buyer</string>
+    <string name="restart_financing">Federal financing</string>
+    <string name="mwe_value">%1$s MWe</string>
+    <string name="restart_timeline">Timeline</string>
+    <string name="restart_sources">Sources</string>
+    <string name="milestone_undated">Date not set</string>
+    <string name="milestone_done">Done</string>
+    <string name="milestone_upcoming">Upcoming</string>
+    <string name="live_nrc_status">NRC daily report: %1$s · %2$s</string>
+    <string name="unit_details_button">Unit details</string>
+    <string name="restart_project">Restart project</string>
+    <string name="restart_details_button">Restart details</string>
+    <string name="status_restarting">Restarting</string>
+    <string name="restarting_offline_for">Restarting · %1$s</string>
 </resources>

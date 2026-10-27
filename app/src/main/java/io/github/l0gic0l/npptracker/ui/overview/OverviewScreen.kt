@@ -33,6 +33,7 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -53,6 +54,7 @@ import androidx.compose.ui.unit.dp
 import io.github.l0gic0l.npptracker.R
 import io.github.l0gic0l.npptracker.data.PowerStatus
 import io.github.l0gic0l.npptracker.data.ReactorUnit
+import io.github.l0gic0l.npptracker.data.RestartProject
 import io.github.l0gic0l.npptracker.data.fleetHistory
 import io.github.l0gic0l.npptracker.data.weightedPower
 import io.github.l0gic0l.npptracker.ui.NppUiState
@@ -71,6 +73,7 @@ import io.github.l0gic0l.npptracker.ui.components.unitSupportingText
 import io.github.l0gic0l.npptracker.ui.screens.AppTopBar
 import io.github.l0gic0l.npptracker.ui.screens.LoadingOrError
 import io.github.l0gic0l.npptracker.ui.screens.RefreshableContent
+import io.github.l0gic0l.npptracker.ui.screens.reportSubtitle
 import io.github.l0gic0l.npptracker.ui.theme.statusColor
 
 /** Fleet-wide dashboard. Cards flow into as many columns as the window has room for. */
@@ -81,6 +84,7 @@ fun OverviewScreen(
     onUnitClick: (String) -> Unit,
     onRefresh: () -> Unit,
     onAbout: () -> Unit,
+    onOpenRestarts: () -> Unit,
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
@@ -88,7 +92,7 @@ fun OverviewScreen(
         topBar = {
             AppTopBar(
                 title = stringResource(R.string.fleet_overview),
-                reportDate = state.reportDate,
+                subtitle = reportSubtitle(state.reportDate),
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconButton(onClick = onRefresh) {
@@ -129,11 +133,16 @@ fun OverviewScreen(
                             emptyText = stringResource(R.string.none_offline),
                             supporting = { unit ->
                                 val days = unit.streakDays
-                                pluralStringResource(
+                                val offlineFor = pluralStringResource(
                                     if (unit.streakCoversHistory) R.plurals.offline_for_at_least else R.plurals.offline_for,
                                     days,
                                     days,
                                 )
+                                if (state.restartFor(unit.name) != null) {
+                                    stringResource(R.string.restarting_offline_for, offlineFor)
+                                } else {
+                                    offlineFor
+                                }
                             },
                             onUnitClick = onUnitClick,
                         )
@@ -161,6 +170,9 @@ fun OverviewScreen(
                             trailing = { ChangeIndicator(it.change) },
                             onUnitClick = onUnitClick,
                         )
+                    }
+                    state.restarts?.let { restarts ->
+                        item(key = "restarts") { RestartsCard(restarts.projects, onOpenRestarts) }
                     }
                     item(key = "regions") { RegionsCard(units) }
                     item(key = "types") { TypesCard(units) }
@@ -297,6 +309,32 @@ private fun UnitListCard(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun RestartsCard(projects: List<RestartProject>, onOpenRestarts: () -> Unit) {
+    SectionCard(
+        title = stringResource(R.string.restarts_title) + " · ${projects.size}",
+        modifier = Modifier
+            .clip(CardDefaults.shape)
+            .clickable(onClick = onOpenRestarts),
+    ) {
+        for (project in projects) {
+            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Text(project.name, style = MaterialTheme.typography.titleSmall)
+                Text(
+                    text = stringResource(
+                        R.string.restart_owner_location,
+                        stringResource(project.stage.labelRes()),
+                        stringResource(R.string.restart_target) + ": " + project.target,
+                    ),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        TextButton(onClick = onOpenRestarts) { Text(stringResource(R.string.restart_details_button)) }
     }
 }
 
