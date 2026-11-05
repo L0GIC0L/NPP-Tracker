@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NPP Tracker</string>
+
+    <!-- Navigation -->
+    <string name="nav_units">Units</string>
+    <string name="nav_overview">Overview</string>
+
+    <!-- Status -->
+    <string name="status_full">Full power</string>
+    <string name="status_reduced">Reduced power</string>
+    <string name="status_offline">Offline</string>
+    <string name="filter_all">All</string>
+    <string name="filter_starred">Starred</string>
+    <string name="filter_with_count">%1$s · %2$d</string>
+    <string name="power_percent">%1$d%%</string>
+    <string name="power_percent_decimal">%1$.1f%%</string>
+    <string name="change_up">Up %1$d since the previous report</string>
+    <string name="change_down">Down %1$d since the previous report</string>
+
+    <!-- Common -->
+    <string name="report_date">NRC report · %1$s</string>
+    <string name="refresh">Refresh</string>
+    <string name="retry">Retry</string>
+    <string name="back">Back</string>
+    <string name="about">About</string>
+    <string name="close">Close</string>
+    <string name="refresh_failed">Couldn\'t refresh: %1$s</string>
+    <string name="load_failed_title">Couldn\'t load reactor status</string>
+    <string name="load_failed_body">Check your connection and try again.\n%1$s</string>
+    <string name="region_name">Region %1$s</string>
+    <string name="unit_supporting">%1$s · %2$s · %3$s</string>
+    <string name="mwt_value">%1$s MWt</string>
+
+    <!-- Unit list -->
+    <string name="search_units">Search units, states, operators</string>
+    <string name="clear_search">Clear search</string>
+    <string name="sort">Sort</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_power_high">Power: high to low</string>
+    <string name="sort_power_low">Power: low to high</string>
+    <string name="sort_change">Largest change</string>
+    <string name="sort_state">State</string>
+    <string name="no_matching_units">No units match</string>
+    <string name="starred">Starred</string>
+
+    <!-- Unit detail -->
+    <string name="select_unit">Select a unit to see its details</string>
+    <string name="star">Star</string>
+    <string name="unstar">Remove star</string>
+    <string name="as_of">As of %1$s</string>
+    <string name="change_since">%1$+d from %2$s</string>
+    <string name="no_change_since">No change from %1$s</string>
+    <string name="thermal_output">≈ %1$s of %2$s MWt licensed</string>
+    <plurals name="online_for">
+        <item quantity="one">Online for %1$d day</item>
+        <item quantity="other">Online for %1$d days</item>
+    </plurals>
+    <plurals name="online_for_at_least">
+        <item quantity="one">Online for at least %1$d day</item>
+        <item quantity="other">Online for at least %1$d days</item>
+    </plurals>
+    <plurals name="offline_for">
+        <item quantity="one">Offline for %1$d day</item>
+        <item quantity="other">Offline for %1$d days</item>
+    </plurals>
+    <plurals name="offline_for_at_least">
+        <item quantity="one">Offline for at least %1$d day</item>
+        <item quantity="other">Offline for at least %1$d days</item>
+    </plurals>
+    <string name="power_history">Power history</string>
+    <string name="range_30d">30 d</string>
+    <string name="range_90d">90 d</string>
+    <string name="range_1y">1 y</string>
+    <string name="average_power">Average power</string>
+    <string name="days_offline">Days offline</string>
+    <string name="outage_count">Outages</string>
+    <string name="chart_description">Power level chart from %1$s to %2$s. Average %3$s.</string>
+    <string name="outages_title">Outages in the report period</string>
+    <string name="no_outages">No outages since %1$s</string>
+    <string name="outage_range">%1$s – %2$s</string>
+    <string name="outage_ongoing">Since %1$s · ongoing</string>
+    <string name="outage_before">Before %1$s</string>
+    <plurals name="days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+    <string name="unit_details">Unit details</string>
+    <string name="no_unit_details">Details for this unit are not bundled with the app yet.</string>
+    <string name="detail_full_name">Name</string>
+    <string name="detail_type">Reactor type</string>
+    <string name="detail_vendor">Vendor / design</string>
+    <string name="detail_containment">Containment</string>
+    <string name="detail_licensed_power">Licensed thermal power</string>
+    <string name="detail_operator">Operator</string>
+    <string name="detail_location">Location</string>
+    <string name="detail_region">NRC region</string>
+    <string name="detail_docket">Docket number</string>
+    <string name="detail_license">License number</string>
+    <string name="detail_license_issued">Operating license issued</string>
+    <string name="detail_license_renewed">License renewed</string>
+    <string name="detail_license_expires">License expires</string>
+    <string name="type_pwr">Pressurized water reactor (PWR)</string>
+    <string name="type_bwr">Boiling water reactor (BWR)</string>
+    <string name="site_units">Other units at this site</string>
+    <string name="nrc_page">NRC unit page</string>
+    <string name="map">Map</string>
+
+    <!-- Overview -->
+    <string name="fleet_overview">Fleet overview</string>
+    <string name="fleet_status">Fleet status</string>
+    <string name="units_generating">of %1$d units generating</string>
+    <string name="fleet_output">Fleet output %1$s of licensed thermal power · ≈ %2$s GWt</string>
+    <string name="fleet_trend">Fleet output</string>
+    <string name="fleet_trend_note">Output of all units as a share of their combined licensed thermal power. Average %1$s for this period.</string>
+    <string name="fleet_chart_description">Fleet output chart from %1$s to %2$s. Average %3$s.</string>
+    <string name="offline_units">Offline</string>
+    <string name="reduced_units">Reduced power</string>
+    <string name="none_offline">Every unit is generating.</string>
+    <string name="none_reduced">No units are at reduced power.</string>
+    <string name="changes_title">Changes since %1$s</string>
+    <string name="no_changes">No power changes since the previous report.</string>
+    <string name="change_from_to">%1$d%% → %2$d%%</string>
+    <string name="by_region">By NRC region</string>
+    <string name="by_type">By reactor type</string>
+    <string name="group_summary">%1$d units · %2$d generating</string>
+    <string name="region_1_area">Northeast</string>
+    <string name="region_2_area">Southeast</string>
+    <string name="region_3_area">Midwest</string>
+    <string name="region_4_area">West and South Central</string>
+    <string name="pwr_short">Pressurized water reactors</string>
+    <string name="bwr_short">Boiling water reactors</string>
+
+    <!-- About -->
+    <string name="about_title">About NPP Tracker</string>
+    <string name="about_body">Shows the daily power level of every commercial nuclear power reactor licensed by the U.S. Nuclear Regulatory Commission.\n\nPower levels come from the NRC Power Reactor Status Report. Each value is the unit\'s power as a percentage of its licensed thermal power, as of the morning of the report date. Unit details come from the NRC list of operating reactors.\n\nThermal output figures are estimates (licensed MWt × reported power).\n\nThis app is not affiliated with or endorsed by the NRC.</string>
+    <string name="about_downloaded">Data downloaded %1$s</string>
+    <string name="open_nrc_report">NRC report</string>
+    <!-- Restarts -->
+    <string name="nav_restarts">Restarts</string>
+    <string name="restarts_title">Plant restarts</string>
+    <string name="restarts_reviewed">Reviewed %1$s</string>
+    <plurals name="restarts_count">
+        <item quantity="one">%1$d shut-down reactor is being returned to service</item>
+        <item quantity="other">%1$d shut-down reactors are being returned to service</item>
+    </plurals>
+    <string name="restarts_capacity">≈ %1$s MWe of capacity · %2$s</string>
+    <string name="restarts_none_generating">none generating yet</string>
+    <string name="restarts_generating">%1$d generating</string>
+    <string name="restarts_explainer">A restart brings a permanently shut-down reactor back into service. The owner must restore the operating license basis with NRC approval, refurbish the plant, load fuel and pass startup testing before it can generate power again.</string>
+    <string name="restarts_disclaimer">Compiled from NRC documents and news reports, so it can lag events. Pull down to fetch the latest list.</string>
+    <string name="stage_announced">Restart announced</string>
+    <string name="stage_nrc_review">NRC review and refurbishment</string>
+    <string name="stage_approved">NRC approval</string>
+    <string name="stage_fuel_load">Fuel loading</string>
+    <string name="stage_startup">Startup and testing</string>
+    <string name="stage_operating">Generating power</string>
+    <string name="stage_of">Stage %1$d of %2$d · %3$s</string>
+    <string name="stage_next">Next: %1$s</string>
+    <string name="formerly">Formerly %1$s</string>
+    <string name="restart_owner_location">%1$s · %2$s</string>
+    <string name="restart_target">Target restart</string>
+    <string name="restart_capacity">Capacity</string>
+    <string name="restart_design">Design</string>
+    <string name="restart_shutdown">Shut down</string>
+    <string name="restart_buyer">Power buyer</string>
+    <string name="restart_financing">Federal financing</string>
+    <string name="mwe_value">%1$s MWe</string>
+    <string name="restart_timeline">Timeline</string>
+    <string name="restart_sources">Sources</string>
+    <string name="milestone_undated">Date not set</string>
+    <string name="milestone_done">Done</string>
+    <string name="milestone_upcoming">Upcoming</string>
+    <string name="live_nrc_status">NRC daily report: %1$s · %2$s</string>
+    <string name="unit_details_button">Unit details</string>
+    <string name="restart_project">Restart project</string>
+    <string name="restart_details_button">Restart details</string>
+    <string name="status_restarting">Restarting</string>
+    <string name="restarting_offline_for">Restarting · %1$s</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Atom symbol, kept inside the 66dp adaptive icon safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="0">
+        <path
+            android:pathData="M30,54a24,9 0,1 0,48 0a24,9 0,1 0,-48 0"
+            android:strokeWidth="3"
+            android:strokeColor="#FFFFFF" />
+    </group>
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="60">
+        <path
+            android:pathData="M30,54a24,9 0,1 0,48 0a24,9 0,1 0,-48 0"
+            android:strokeWidth="3"
+            android:strokeColor="#FFFFFF" />
+    </group>
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="120">
+        <path
+            android:pathData="M30,54a24,9 0,1 0,48 0a24,9 0,1 0,-48 0"
+            android:strokeWidth="3"
+            android:strokeColor="#FFFFFF" />
+    </group>
+    <path
+        android:fillColor="#7FE3FF"
+        android:pathData="M48,54a6,6 0,1 0,12 0a6,6 0,1 0,-12 0" />
+</vector>
